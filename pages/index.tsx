@@ -1,6 +1,7 @@
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
+import CategorySection from '@components/partials/home/category-section';
 import IntroSection from '@components/partials/home/intro-section';
 import ProductCollection from '@components/partials/home/product-collection';
 import PromoSection from '@components/partials/home/promo-section';
@@ -39,7 +40,8 @@ export async function getStaticProps({
     revalidate: 60,
   }
 }
-var loading = true;
+
+var loading = false;
 
 export default function Home({
   products,
@@ -47,6 +49,7 @@ export default function Home({
   return (
     <>
       <IntroSection/>
+      <CategorySection />
       <ProductCollection
                     products={products}
                     loading={ loading }

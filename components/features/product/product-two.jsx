@@ -12,10 +12,10 @@ import { toDecimal } from '@utils';
 
 function ProductTwo ( props ) {
     const { product, adClass = 'text-center', toggleWishlist, wishlist, addToCart, openQuickview, isCat = true, isRatingText = true } = props;
-
+console.log(product);
     // decide if the product is wishlisted
-    let isWishlisted;
-    isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
+    // let isWishlisted;
+    // isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
 
     const showQuickviewHandler = () => {
         openQuickview( product.slug );
@@ -46,7 +46,7 @@ function ProductTwo ( props ) {
                 <ALink href={ `/product/default/${ product.slug }` }>
                     <LazyLoadImage
                         alt="product"
-                        src={ process.env.NEXT_PUBLIC_ASSET_URI + product.pictures[ 0 ].url }
+                        src={product.images[0].url}
                         threshold={ 500 }
                         effect="opacity"
                         width="300"
@@ -54,10 +54,10 @@ function ProductTwo ( props ) {
                     />
 
                     {
-                        product.pictures.length >= 2 ?
+                        product.images.length >= 2 ?
                             <LazyLoadImage
                                 alt="product"
-                                src={ process.env.NEXT_PUBLIC_ASSET_URI + product.pictures[ 1 ].url }
+                                src={product.images[1].url}
                                 threshold={ 500 }
                                 width="300"
                                 height="338"
@@ -90,9 +90,7 @@ function ProductTwo ( props ) {
                                 <i className="d-icon-bag"></i>
                             </a>
                     }
-                    <a href="#" className="btn-product-icon btn-wishlist" title={ isWishlisted ? 'Remove from wishlist' : 'Add to wishlist' } onClick={ wishlistHandler }>
-                        <i className={ isWishlisted ? "d-icon-heart-full" : "d-icon-heart" }></i>
-                    </a>
+                  
                 </div>
 
                 <div className="product-action">
