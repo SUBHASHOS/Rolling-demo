@@ -3,6 +3,7 @@ import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import CategorySection from '@components/partials/home/category-section';
 import IntroSection from '@components/partials/home/intro-section';
+import BannerSection from '@components/partials/home/banner-section';
 import ProductCollection from '@components/partials/home/product-collection';
 import PromoSection from '@components/partials/home/promo-section';
 import { Grid, Marquee, Hero } from '@components/ui'
@@ -50,6 +51,7 @@ export default function Home({
     <>
       <IntroSection/>
       <CategorySection />
+      <BannerSection />
       <ProductCollection
                     products={products}
                     loading={ loading }

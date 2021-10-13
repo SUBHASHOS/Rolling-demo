@@ -70,6 +70,10 @@ export const productInfoFragment = /* GraphQL */ `
         }
       }
     }
+    reviewSummary{
+      numberOfReviews
+      summationOfRatings
+    }
     productOptions {
       edges {
         node {

@@ -12,7 +12,7 @@ import { toDecimal } from '@utils';
 
 function ProductTwo ( props ) {
     const { product, adClass = 'text-center', toggleWishlist, wishlist, addToCart, openQuickview, isCat = true, isRatingText = true } = props;
-console.log(product);
+console.log(props);
     // decide if the product is wishlisted
     // let isWishlisted;
     // isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
@@ -43,7 +43,7 @@ console.log(product);
     return (
         <div className={ `product ${ adClass }` }>
             <figure className="product-media">
-                <ALink href={ `/product/default/${ product.slug }` }>
+                <ALink href={ `/product/${ product.slug }` }>
                     <LazyLoadImage
                         alt="product"
                         src={product.images[0].url}
@@ -119,8 +119,20 @@ console.log(product);
                 <h3 className="product-name">
                     <ALink href={ `/product/default/${ product.slug }` }>{ product.name }</ALink>
                 </h3>
-
                 <div className="product-price">
+                    {product.prices?.price ?
+                        <>
+                            <ins className="new-price">${toDecimal(product.prices.price.value)}</ins>
+                            <del className="old-price">${toDecimal(product.prices.price.value *1.2)}</del>
+                        </>
+                        :
+                        <>
+                            <ins className="new-price">${toDecimal(product.price.value)}</ins>
+                            <del className="old-price">${toDecimal(product.price.value * 1.2)}</del>
+                        </>
+                    }
+
+                {/* <div className="product-price">
                     {
                         product.price[ 0 ] !== product.price[ 1 ] ?
                             product.variants.length === 0 || ( product.variants.length > 0 && !product.variants[ 0 ].price ) ?
@@ -131,13 +143,14 @@ console.log(product);
                                 :
                                 < del className="new-price">${ toDecimal( product.price[ 0 ] ) } – ${ toDecimal( product.price[ 1 ] ) }</del>
                             : <ins className="new-price">${ toDecimal( product.price[ 0 ] ) }</ins>
-                    }
+                    } */}
                 </div>
 
                 <div className="ratings-container">
-                    <div className="ratings-full">
-                        <span className="ratings" style={ { width: 20 * product.ratings + '%' } }></span>
-                        <span className="tooltiptext tooltip-top">{ toDecimal( product.ratings ) }</span>
+                <div className="ratings-full">
+                        {`${product.reviewSummary.numberOfReviews} ratings`}
+                        <span className="ratings" style={{ width: 20 * product.reviewSummary.numberOfReviews + '%' }}></span>
+                        <span className="tooltiptext tooltip-top">{toDecimal(product.reviewSummary.summationOfRatings / product.reviewSummary.numberOfReviews)}</span>
                     </div>
 
                     <ALink href={ `/product/default/${ product.slug }` } className="rating-reviews">
