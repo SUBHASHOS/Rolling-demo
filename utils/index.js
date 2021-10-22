@@ -312,5 +312,9 @@ export const getCartCount = cartItems => {
  * utils to show number to n places of decimals
  */
 export const toDecimal = ( price, fixedCount = 2 ) => {
-    return price.toLocaleString( undefined, { minimumFractionDigits: fixedCount, maximumFractionDigits: fixedCount } );
+    if(price>0) {
+    return price.toLocaleString( undefined, { minimumFractionDigits: fixedCount, maximumFractionDigits: fixedCount } );}
+    else{
+    return 200;
+    }
 }

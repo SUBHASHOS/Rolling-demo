@@ -12,7 +12,7 @@ import { toDecimal } from '@utils';
 
 function ProductTwo ( props ) {
     const { product, adClass = 'text-center', toggleWishlist, wishlist, addToCart, openQuickview, isCat = true, isRatingText = true } = props;
-console.log(props);
+console.log(product);
     // decide if the product is wishlisted
     // let isWishlisted;
     // isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
