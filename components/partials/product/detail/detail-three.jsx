@@ -231,7 +231,7 @@ function DetailThree ( props ) {
                 <ALink href="#" className="rating-reviews">( { product.reviews } reviews )</ALink>
             </div>
 
-            <p className="product-short-desc">{ product.short_description }</p>
+            <p className="product-short-desc">{ product.description }</p>
 
             {
                 product && product.variants.length > 0 ?

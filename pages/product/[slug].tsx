@@ -9,8 +9,11 @@ import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 
-import MediaOne from '@components/partials/product/media/media-one';
+// import MediaTwo from '@components/partials/product/media/media-two';
+import MediaThree from '@components/partials/product/media/media-three';
 import DetailThree from '@components/partials/product/detail/detail-three';
+// import OwlCarousel from '@components/features/owl-carousel';
+// import { mainSlider17 } from '@utils/data/carousel';
 
 export async function getStaticProps({
   params,
@@ -84,7 +87,8 @@ export default function Slug({
                         <div className="container skeleton-body">
                             <div className="product product-single row mb-8">
                                 <div className="col-md-6">
-                                    {/* <MediaOne product={ product } adClass='pb-0' /> */}
+                                <MediaThree product={ product } />
+                                {/* <MediaTwo product={ product } /> */}
                                 </div>
 
                                 <div className="col-md-6">
@@ -96,6 +100,17 @@ export default function Slug({
 
                             <RelatedProducts products={ related } adClass="pb-6 pt-10 mt-6" /> */}
                         </div>
+                        {/* <section className="pt-3 mt-4">
+                            <h2 className="title justify-content-center">Related Products</h2>
+
+                            <OwlCarousel adClass="owl-carousel owl-theme owl-nav-full" options={ mainSlider17 }>
+                                {
+                                    [ 1, 2, 3, 4, 5, 6 ].map( ( item ) =>
+                                        <div className="product-loading-overlay" key={ 'popup-skel-' + item }></div>
+                                    )
+                                }
+                            </OwlCarousel>
+                        </section> */}
                     </div>
 
     <ProductView product={product} relatedProducts={relatedProducts} />
