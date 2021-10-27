@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
-import Collapse from 'react-bootstrap/collapse';
+// import Collapse from 'react-bootstrap/collapse';
 
 import ALink from '@components/features/custom-link';
 import Countdown from '@components/features/countdown';
@@ -9,6 +9,9 @@ import Quantity from '@components/features/quantity';
 
 import ProductNav from '@components/partials/product/product-nav';
 import DescTwo from '@components/partials/product/desc/desc-two';
+import { Button, Text, Rating, Collapse, useUI } from '@components/ui'
+import { ProductOptions } from '@components/product'
+import { SelectedOptions } from '@components/product/helpers'
 
 // import { wishlistActions } from '@store/wishlist';
 // import { cartActions } from '@store/cart';
@@ -24,7 +27,11 @@ function DetailThree ( props ) {
     const [ curIndex, setCurIndex ] = useState( 0 );
     const [ cartActive, setCartActive ] = useState( false );
     const [ quantity, setQauntity ] = useState( 1 );
+    const [selectedOptions, setSelectedOptions] = useState({})
  
+   
+      
+      
     // decide if the product is wishlisted
     let isWishlisted, colors = [], sizes = [];
 
@@ -230,8 +237,16 @@ function DetailThree ( props ) {
 
                 <ALink href="#" className="rating-reviews">( { product.reviews } reviews )</ALink>
             </div>
+            <ProductOptions
+        options={product.options}
+        selectedOptions={selectedOptions}
+        setSelectedOptions={setSelectedOptions}
+      />
 
-            <p className="product-short-desc">{ product.description }</p>
+            <Text
+        className="pb-4 break-words w-full max-w-xl"
+        html={product.descriptionHtml || product.description}
+      />
 
             {
                 product && product.variants.length > 0 ?
@@ -327,6 +342,18 @@ function DetailThree ( props ) {
             {
                 isDesc ? <DescTwo product={ product } adClass={ adClass } isSizeGuide={ isSizeGuide } /> : ''
             }
+    <div className="mt-6">
+        <Collapse title="Care">
+          This is a limited edition production run. Printing starts when the
+          drop ends.
+        </Collapse>
+        <Collapse title="Details">
+          This is a limited edition production run. Printing starts when the
+          drop ends. Reminder: Bad Boys For Life. Shipping may take 10+ days due
+          to COVID-19.
+        </Collapse>
+      </div>
+            
         </div >
     )
 }
